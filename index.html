@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DS Lab Portal - Data Science Laboratory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Top Navigation: Home | Lab Executions | Tools | Profile -->
+    <header class="top-navbar">
+      <div class="nav-container">
+        <a href="#/home" class="nav-brand" id="brand-link">
+          <div class="nav-brand-icon">DS</div>
+          <div class="nav-brand-text">
+            <span class="nav-title">DS Lab Portal</span>
+            <span class="nav-subtitle">Data Science Laboratory</span>
+          </div>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+
+        <nav>
+          <ul class="nav-links" id="nav-links-menu">
+            <li><a href="#/home" class="nav-link" data-view="home">Home</a></li>
+            <li><a href="#/executions" class="nav-link" data-view="executions">Lab Executions</a></li>
+            <li><a href="#/tools" class="nav-link" data-view="tools">Tools</a></li>
+            <li><a href="#/profile" class="nav-link" data-view="profile">Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- ==========================================================
+           1. HOME VIEW
+           ========================================================== -->
+      <section id="home-view" class="page-view">
+        <div class="home-welcome-card">
+          <div class="welcome-info">
+            <div class="badge-tag">Academic Year 2026-27 • Semester IV</div>
+            <h1 class="welcome-heading">Welcome to the DS Lab Portal</h1>
+            <p class="welcome-desc">
+              A clean, centralized academic workspace for Data Science students and faculty. Track laboratory experiment progress, verify Python and machine learning code outputs, inspect computation libraries, and review student profile details.
+            </p>
+            <div class="welcome-actions">
+              <a href="#/executions" class="btn btn-primary">View Lab Executions</a>
+              <a href="#/tools" class="btn btn-secondary">Explore Tools Used</a>
+              <a href="#/profile" class="btn btn-secondary">Student Profile</a>
+            </div>
+          </div>
+          <div class="welcome-graphic">
+            <div class="stat-number" id="home-progress-count">8 / 10</div>
+            <div class="stat-label">Experiments Completed</div>
+            <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);" id="home-progress-percent">80% Completion Rate</div>
+          </div>
+        </div>
+
+        <!-- Clean Cards Overview -->
+        <div class="home-grid">
+          <div class="clean-card">
+            <div class="card-icon">🧪</div>
+            <h3 class="card-title">10 Lab Experiments</h3>
+            <p class="card-text">
+              Curriculum aligned with foundational data science: NumPy matrix math, Pandas cleaning, EDA visualizations, hypothesis testing, and Scikit-learn ML models.
+            </p>
+            <a href="#/executions" class="card-action-link">Open Executions &rarr;</a>
+          </div>
+
+          <div class="clean-card">
+            <div class="card-icon">🛠️</div>
+            <h3 class="card-title">Experiment Tools</h3>
+            <p class="card-text">
+              Examine the software libraries and toolchains applied in each experiment, structured specifically for clear professor evaluation.
+            </p>
+            <a href="#/tools" class="card-action-link">View Tools Breakdown &rarr;</a>
+          </div>
+
+          <div class="clean-card">
+            <div class="card-icon">🎓</div>
+            <h3 class="card-title">Student Profile</h3>
+            <p class="card-text">
+              Verified record for <strong>D.S.Prudhvi Raj</strong> (Roll: 24102A030017, DS-1) supervised by <strong>Asst. Prof. Bosubabu</strong>.
+            </p>
+            <a href="#/profile" class="card-action-link">View Profile Card &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Quick Summary Table -->
+        <h2 class="home-section-title">Laboratory Experiments Status</h2>
+        <div class="overview-table-wrapper">
+          <table class="overview-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">Exp #</th>
+                <th>Title</th>
+                <th>Primary Tools</th>
+                <th>Status</th>
+                <th style="width: 120px;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="home-experiments-summary-rows">
+              <!-- Dynamically populated from Database -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           2. LAB EXECUTIONS VIEW
+           ========================================================== -->
+      <section id="executions-view" class="page-view">
+        <div class="page-header">
+          <div>
+            <h1 class="page-header-title">Lab Executions</h1>
+            <p class="page-header-desc">
+              Browse all 10 Data Science laboratory experiments, inspect code execution results, manage output files, and upload updated outputs for professor review.
+            </p>
+          </div>
+          <div class="executions-toolbar">
+            <div class="filter-btn-group" id="status-filter-group">
+              <button class="filter-btn active" data-filter="all">All (10)</button>
+              <button class="filter-btn" data-filter="Completed">Completed</button>
+              <button class="filter-btn" data-filter="In Progress">In Progress</button>
+              <button class="filter-btn" data-filter="Pending">Pending</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experiment Cards List -->
+        <div class="experiments-list" id="experiments-list-container">
+          <!-- Populated by app.js from Database -->
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           3. TOOLS VIEW
+           ========================================================== -->
+      <section id="tools-view" class="page-view">
+        <div class="page-header">
+          <div>
+            <h1 class="page-header-title">Experiment Tools Used</h1>
+            <p class="page-header-desc">
+              Detailed academic catalog of programming languages, libraries, algorithms, and computational environments used across each experiment.
+            </p>
+          </div>
+        </div>
+
+        <div class="tools-intro-box">
+          <span class="tools-intro-text">
+            Filter tools or search by library name (e.g. <em>NumPy</em>, <em>Pandas</em>, <em>Scikit-Learn</em>, <em>Matplotlib</em>):
+          </span>
+          <input type="text" id="tools-search-input" class="tools-search-input" placeholder="Search tool or library...">
+        </div>
+
+        <div class="tools-grid" id="tools-list-container">
+          <!-- Populated by app.js from Database -->
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           4. PROFILE VIEW
+           ========================================================== -->
+      <section id="profile-view" class="page-view">
+        <div class="profile-wrapper">
+          <div class="profile-card">
+            <!-- Header Banner -->
+            <div class="profile-banner"></div>
+
+            <div class="profile-body">
+              <div class="profile-top-row">
+                <div class="profile-avatar-container">
+                  <img id="profile-display-photo" class="profile-avatar-img" src="" alt="Student Profile Photo">
+                </div>
+                <button class="btn btn-primary" id="btn-open-edit-profile">
+                  ✏️ Edit Profile
+                </button>
+              </div>
+
+              <!-- Student Identity -->
+              <div class="profile-identity">
+                <h1 class="profile-name" id="profile-display-name">D.S.Prudhvi Raj</h1>
+                <div class="profile-roll" id="profile-display-roll">Roll No: 24102A030017</div>
+              </div>
+
+              <!-- Metadata Grid -->
+              <div class="profile-meta-grid">
+                <div class="meta-field">
+                  <span class="meta-label">Section</span>
+                  <span class="meta-value" id="profile-display-section">DS-1</span>
+                </div>
+                <div class="meta-field">
+                  <span class="meta-label">Branch</span>
+                  <span class="meta-value" id="profile-display-branch">DS</span>
+                </div>
+                <div class="meta-field">
+                  <span class="meta-label">Assistant Professor</span>
+                  <span class="meta-value" id="profile-display-mentor">Bosubabu</span>
+                </div>
+                <div class="meta-field">
+                  <span class="meta-label">GitHub</span>
+                  <span class="meta-value">
+                    <a id="profile-display-github" href="#" target="_blank" rel="noopener noreferrer">github.com/prudhviraj</a>
+                  </span>
+                </div>
+                <div class="meta-field">
+                  <span class="meta-label">LinkedIn</span>
+                  <span class="meta-value">
+                    <a id="profile-display-linkedin" href="#" target="_blank" rel="noopener noreferrer">linkedin.com/in/prudhviraj</a>
+                  </span>
+                </div>
+                <div class="meta-field">
+                  <span class="meta-label">Database Status</span>
+                  <span class="meta-value" style="color: var(--status-completed); font-size: 0.85rem;">
+                    ● Synced (IndexedDB)
+                  </span>
+                </div>
+              </div>
+
+              <!-- Skills Section -->
+              <div class="profile-skills-section">
+                <div class="section-subhead">Technical Skills</div>
+                <div class="skills-badge-list" id="profile-display-skills">
+                  <!-- Skill chips inserted dynamically -->
+                </div>
+              </div>
+
+              <!-- Lab Progress -->
+              <div class="progress-card">
+                <div class="progress-header">
+                  <span class="progress-title">Lab Progress: Completed / Total Experiments</span>
+                  <span class="progress-fraction" id="profile-progress-fraction">8 / 10 Experiments (80%)</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar-fill" id="profile-progress-bar" style="width: 80%;"></div>
+                </div>
+                <div class="progress-subtext" id="profile-progress-subtext">
+                  8 Completed • 1 In Progress • 1 Pending
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div>
+          <strong>DS Lab Portal</strong> &copy; 2026 • Department of Data Science
+        </div>
+        <div>
+          Faculty In-charge: <strong>Asst. Prof. Bosubabu</strong> | Student: <strong>D.S.Prudhvi Raj</strong>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================================
+       MODALS
+       ========================================================== -->
+
+  <!-- 1. Edit Profile Modal -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Student Profile</h2>
+        <button class="modal-close-btn" data-close-modal="edit-profile-modal">&times;</button>
+      </div>
+      <form id="edit-profile-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Profile Photo (Upload file or provide Image URL)</label>
+            <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem;">
+              <input type="file" id="edit-photo-file" accept="image/*" class="form-input" style="padding: 0.4rem;">
+            </div>
+            <input type="text" id="edit-photo-url" class="form-input" placeholder="Or paste image URL (https://...)">
+            <div class="form-hint">Leave as-is to keep current profile photo.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="edit-name">Full Name *</label>
+              <input type="text" id="edit-name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-roll">Roll No *</label>
+              <input type="text" id="edit-roll" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="edit-section">Section *</label>
+              <input type="text" id="edit-section" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-branch">Branch *</label>
+              <input type="text" id="edit-branch" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-mentor">Assistant Professor *</label>
+            <input type="text" id="edit-mentor" class="form-input" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="edit-github">GitHub Profile URL</label>
+              <input type="url" id="edit-github" class="form-input" placeholder="https://github.com/username">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="edit-linkedin">LinkedIn Profile URL</label>
+              <input type="url" id="edit-linkedin" class="form-input" placeholder="https://linkedin.com/in/username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-skills">Skills (Comma-separated)</label>
+            <textarea id="edit-skills" class="form-textarea" rows="3" placeholder="Python, NumPy, Pandas, Matplotlib, Machine Learning..."></textarea>
+            <div class="form-hint">Separate skills with commas. They will be displayed as badges.</div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="edit-profile-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes to Database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. View Output Preview Modal -->
+  <div class="modal-overlay" id="view-output-modal">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <h2 class="modal-title" id="view-modal-title">Experiment Output Preview</h2>
+        <button class="modal-close-btn" data-close-modal="view-output-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="view-modal-image-container" style="text-align: center;">
+          <img id="view-modal-image" class="preview-modal-img" src="" alt="Experiment Output">
+        </div>
+        <div class="output-meta-detail" id="view-modal-meta">
+          <!-- Filled by app.js -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="view-output-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Upload Output Modal -->
+  <div class="modal-overlay" id="upload-output-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="upload-modal-title">Upload Execution Output</h2>
+        <button class="modal-close-btn" data-close-modal="upload-output-modal">&times;</button>
+      </div>
+      <form id="upload-output-form">
+        <input type="hidden" id="upload-exp-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Select Output File or Screenshot (PNG, JPG, SVG, CSV, TXT, PDF)</label>
+            <input type="file" id="upload-file-input" class="form-input" required>
+            <div class="form-hint">File preview will be stored in the database.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="upload-status-select">Update Execution Status</label>
+            <select id="upload-status-select" class="form-select">
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Pending">Pending</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="upload-notes">Execution Notes / Remarks</label>
+            <textarea id="upload-notes" class="form-textarea" rows="3" placeholder="e.g. Model evaluated on test split; all tests passed."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="upload-output-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Output to Database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="sample-outputs.js"></script>
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
